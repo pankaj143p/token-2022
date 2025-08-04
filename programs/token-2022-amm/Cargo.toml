@@ -6,7 +6,7 @@ edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "token_2022_amm"
+name = "token_amm"
 
 [features]
 no-entrypoint = []
@@ -16,8 +16,7 @@ cpi = ["no-entrypoint"]
 default = []
 
 [dependencies]
-anchor-lang.workspace = true
-anchor-spl.workspace = true
-spl-token-2022.workspace = true
-spl-transfer-hook-interface.workspace = true
-borsh.workspace = true
+anchor-lang = "0.31.1"
+anchor-spl = { version = "0.31.1", features = ["token_interface"] }
+solana-program = "1.18"
+spl-token-2022 = { version = "4.0", features = ["no-entrypoint"] }
