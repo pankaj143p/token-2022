@@ -1,0 +1,23 @@
+[package]
+name = "token-2022-amm"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "token_2022_amm"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang.workspace = true
+anchor-spl.workspace = true
+spl-token-2022.workspace = true
+spl-transfer-hook-interface.workspace = true
+borsh.workspace = true

@@ -1,0 +1,15 @@
+[workspace]
+members = [
+    "programs/token-2022-amm",
+    "programs/transfer-hook",
+]
+resolver = "2"
+
+[workspace.dependencies]
+anchor-lang = "0.29.0"
+anchor-spl = "0.29.0"
+solana-program = "~1.17.0"
+spl-token = "~4.0.0"
+spl-token-2022 = "~1.0.0"
+spl-transfer-hook-interface = "~0.4.0"
+borsh = "0.10.3"
