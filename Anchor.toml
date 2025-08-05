@@ -15,12 +15,15 @@ token_amm = "AcVqvDTmYKLpHM1o1WnkUAHPT6vxRomaSfFji9wRY1m7"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "Devnet"
 wallet = "~/.config/solana/id.json"
 
 [build]
-# Remove this line to let Anchor handle the build process
-# cargo-build-command = "cargo build-bpf"
+cargo-build-command = "cargo build-sbf"
+
+[workspace]
+members = ["programs/token-2022-amm"]
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+

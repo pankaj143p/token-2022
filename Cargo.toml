@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "programs/*"
+    "programs/token-2022-amm"
 ]
 resolver = "2"
 
