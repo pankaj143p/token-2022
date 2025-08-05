@@ -4,8 +4,11 @@
     "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
     "build": "anchor build",
     "test": "anchor test",
-    "deploy:devnet": "anchor deploy --provider.cluster devnet",
-    "deploy:mainnet": "anchor deploy --provider.cluster mainnet",
+    "test:devnet": "cp Anchor.devnet.toml Anchor.toml && anchor test",
+    "test:mainnet": "cp Anchor.mainnet.toml Anchor.toml && anchor test",
+    "deploy": "anchor deploy",
+    "deploy:devnet": "cp Anchor.devnet.toml Anchor.toml && anchor deploy",
+    "deploy:mainnet": "cp Anchor.mainnet.toml Anchor.toml && anchor deploy",
     "start:frontend": "cd app && yarn start",
     "build:frontend": "cd app && yarn build",
     "setup": "yarn install && cd app && yarn install"
@@ -22,8 +25,10 @@
     "@solana/wallet-adapter-react": "^0.15.39",
     "@solana/wallet-adapter-react-ui": "^0.9.39",
     "@solana/wallet-adapter-wallets": "^0.19.37",
+    "@types/web": "^0.0.259",
     "dotenv": "^17.2.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "typescript": "^5.9.2"
   }
 }
