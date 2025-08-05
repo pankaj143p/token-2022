@@ -1,6 +1,7 @@
 use anchor_lang::prelude::*;
+use anchor_spl::token::{Token, Mint};
 
-declare_id!("AcVqvDTmYKLpHM1o1WnkUAHPT6vxRomaSfFji9wRY1m7");
+declare_id!("2516vhAXsYH9co7EPrW1k2oMnHUq7yS6eHerftbVaqms");
 
 #[program]
 pub mod token_amm {
@@ -9,7 +10,7 @@ pub mod token_amm {
     pub fn initialize_pool(
         ctx: Context<InitializePool>,
         fee_rate: u64,
-        _hook_whitelist: Vec<Pubkey>, // Prefix with underscore to suppress warning
+        _hook_whitelist: Vec<Pubkey>,
     ) -> Result<()> {
         let pool = &mut ctx.accounts.pool;
         pool.authority = ctx.accounts.authority.key();
@@ -37,13 +38,13 @@ pub struct InitializePool<'info> {
     )]
     pub pool: Account<'info, Pool>,
     
-    /// Token A mint (Token-2022)
-    pub token_a_mint: InterfaceAccount<'info, anchor_spl::token_interface::Mint>,
-    /// Token B mint  
-    pub token_b_mint: InterfaceAccount<'info, anchor_spl::token_interface::Mint>,
+    /// Token A mint - Works with both SPL Token and Token-2022
+    pub token_a_mint: Account<'info, Mint>,
+    /// Token B mint
+    pub token_b_mint: Account<'info, Mint>,
     
     pub system_program: Program<'info, System>,
-    pub rent: Sysvar<'info, Rent>,
+    pub token_program: Program<'info, Token>,
 }
 
 #[account]
@@ -59,3 +60,4 @@ pub struct Pool {
 impl Pool {
     pub const LEN: usize = 32 + 32 + 32 + 8 + 1 + 1;
 }
+

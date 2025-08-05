@@ -3,13 +3,13 @@ seeds = false
 skip-lint = false
 
 [programs.localnet]
-token_amm = "AcVqvDTmYKLpHM1o1WnkUAHPT6vxRomaSfFji9wRY1m7"
+token_amm = "2516vhAXsYH9co7EPrW1k2oMnHUq7yS6eHerftbVaqms"
 
 [programs.devnet]
-token_amm = "AcVqvDTmYKLpHM1o1WnkUAHPT6vxRomaSfFji9wRY1m7"
+token_amm = "2516vhAXsYH9co7EPrW1k2oMnHUq7yS6eHerftbVaqms"
 
 [programs.mainnet]
-token_amm = "AcVqvDTmYKLpHM1o1WnkUAHPT6vxRomaSfFji9wRY1m7"
+token_amm = "2516vhAXsYH9co7EPrW1k2oMnHUq7yS6eHerftbVaqms"
 
 [registry]
 url = "https://api.apr.dev"
@@ -17,9 +17,6 @@ url = "https://api.apr.dev"
 [provider]
 cluster = "Devnet"
 wallet = "~/.config/solana/id.json"
-
-[build]
-cargo-build-command = "cargo build-sbf"
 
 [workspace]
 members = ["programs/token-2022-amm"]
