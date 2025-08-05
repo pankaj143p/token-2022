@@ -1,6 +1,5 @@
 use anchor_lang::prelude::*;
 
-// Replace with your actual program ID from the keypair
 declare_id!("AcVqvDTmYKLpHM1o1WnkUAHPT6vxRomaSfFji9wRY1m7");
 
 #[program]
@@ -10,7 +9,7 @@ pub mod token_amm {
     pub fn initialize_pool(
         ctx: Context<InitializePool>,
         fee_rate: u64,
-        hook_whitelist: Vec<Pubkey>,
+        _hook_whitelist: Vec<Pubkey>, // Prefix with underscore to suppress warning
     ) -> Result<()> {
         let pool = &mut ctx.accounts.pool;
         pool.authority = ctx.accounts.authority.key();
