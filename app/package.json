@@ -2,57 +2,35 @@
   "name": "token-2022-amm-frontend",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
-    "@heroicons/react": "^2.0.13",
-    "@project-serum/anchor": "^0.25.0",
-    "@solana/spl-token": "^0.3.9",
-    "@solana/spl-token-registry": "^0.2.4574",
+    "@coral-xyz/anchor": "^0.29.0",
     "@solana/wallet-adapter-base": "^0.9.23",
     "@solana/wallet-adapter-react": "^0.15.35",
-    "@solana/wallet-adapter-react-ui": "^0.9.35",
-    "@solana/wallet-adapter-wallets": "^0.19.32",
+    "@solana/wallet-adapter-react-ui": "^0.9.34",
+    "@solana/wallet-adapter-wallets": "^0.19.26",
     "@solana/web3.js": "^1.87.6",
-    "@types/node": "^16.18.11",
-    "@types/react-dom": "^18.0.10",
-    "autoprefixer": "^10.4.13",
-    "clsx": "^1.2.1",
-    "postcss": "^8.4.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hot-toast": "^2.4.0",
-    "react-router-dom": "^6.8.1",
-    "react-scripts": "5.0.1",
-    "tailwindcss": "^3.2.4",
-    "typescript": "^4.9.4",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@solana/spl-token": "^0.4.0",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "react-hot-toast": "^2.4.1",
+    "@heroicons/react": "^2.0.18"
   },
   "devDependencies": {
-    "@types/jest": "^27.5.2",
-    "@types/react": "^18.3.23"
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4"
   }
 }

@@ -1,26 +1,22 @@
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
 [programs.localnet]
-token_amm = "2516vhAXsYH9co7EPrW1k2oMnHUq7yS6eHerftbVaqms"
+token_2022_amm = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
 
 [programs.devnet]
-token_amm = "2516vhAXsYH9co7EPrW1k2oMnHUq7yS6eHerftbVaqms"
-
-[programs.mainnet]
-token_amm = "2516vhAXsYH9co7EPrW1k2oMnHUq7yS6eHerftbVaqms"
+token_2022_amm = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "Localnet"
 wallet = "~/.config/solana/id.json"
-
-[workspace]
-members = ["programs/token-2022-amm"]
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
 
+# Remove any toolchain specifications that might be causing issues
+[toolchain]

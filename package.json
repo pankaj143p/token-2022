@@ -1,34 +1,47 @@
 {
+  "name": "token-2022-amm",
+  "version": "1.0.0",
+  "description": "Token-2022 AMM with Transfer Hook support",
+  "main": "index.js",
   "scripts": {
     "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
     "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
     "build": "anchor build",
-    "test": "anchor test",
-    "test:devnet": "cp Anchor.devnet.toml Anchor.toml && anchor test",
-    "test:mainnet": "cp Anchor.mainnet.toml Anchor.toml && anchor test",
-    "deploy": "anchor deploy",
-    "deploy:devnet": "cp Anchor.devnet.toml Anchor.toml && anchor deploy",
-    "deploy:mainnet": "cp Anchor.mainnet.toml Anchor.toml && anchor deploy",
-    "start:frontend": "cd app && yarn start",
-    "build:frontend": "cd app && yarn build",
-    "setup": "yarn install && cd app && yarn install"
-  },
-  "devDependencies": {
-    "@coral-xyz/anchor": "^0.29.0",
-    "@solana/web3.js": "^1.98.4",
-    "@types/react": "^19.1.9",
-    "@types/react-dom": "^19.1.7",
-    "prettier": "^2.6.2"
+    "build-all": "chmod +x scripts/build-all.sh && ./scripts/build-all.sh",
+    "test": "anchor test --skip-local-validator",
+    "test-local": "anchor test",
+    "deploy-program": "ts-node scripts/deploy-program.ts",
+    "deploy": "anchor deploy --provider.cluster devnet && npm run deploy-program",
+    "setup": "chmod +x scripts/setup.sh && ./scripts/setup.sh",
+    "fix-audit": "npm audit fix --force",
+    "clean": "anchor clean && rm -rf target/",
+    "dev": "cd app && npm run dev",
+    "update-solana": "sh -c \"$(curl -sSfL https://release.solana.com/v1.18.26/install)\"",
+    "check-tools": "echo 'Solana:' && solana --version && echo 'Anchor:' && anchor --version"
   },
   "dependencies": {
-    "@solana/wallet-adapter-base": "^0.9.27",
-    "@solana/wallet-adapter-react": "^0.15.39",
-    "@solana/wallet-adapter-react-ui": "^0.9.39",
-    "@solana/wallet-adapter-wallets": "^0.19.37",
-    "@types/web": "^0.0.259",
-    "dotenv": "^17.2.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "typescript": "^5.9.2"
-  }
+    "@coral-xyz/anchor": "^0.31.1",
+    "@solana/spl-token": "^0.1.8",
+    "@solana/web3.js": "^1.95.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^20.0.0",
+    "chai": "^4.3.4",
+    "mocha": "^11.7.1",
+    "prettier": "^3.0.0",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "overrides": {
+    "bigint-buffer": "1.1.5",
+    "@solana/buffer-layout-utils": "0.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Token-2022 AMM Team",
+  "license": "MIT"
 }

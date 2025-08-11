@@ -1,296 +1,282 @@
-# Token-2022 AMM with Transfer Hooks
+# Token-2022 AMM 🪙🔄
 
-> 🏆 **Bounty Submission**: Making Token-2022 with Transfer Hooks Tradable on Solana AMMs
+A complete Automated Market Maker (AMM) implementation supporting Solana's Token-2022 standard with Transfer Hooks for enterprise-grade tokenized assets.
 
-A complete solution that enables Token-2022 tokens with transfer hooks to be traded on automated market makers (AMMs). This project provides a custom AMM implementation specifically designed to handle Token-2022's advanced features while maintaining security and compliance.
+![Token-2022 AMM](https://img.shields.io/badge/Solana-Token--2022-9945FF?style=for-the-badge&logo=solana)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-## 🎯 Project Overview
+## 🎯 Problem & Solution
 
-This project solves the critical issue that no major AMMs currently support trading Token-2022 tokens with active transfer hooks. Our solution includes:
+### The Problem
+Token-2022 enables critical features for real-world asset tokenization:
+- ✅ Whitelisting & KYC gating
+- ✅ Conditional transfers
+- ✅ Programmable compliance via Transfer Hooks
 
-- **Custom AMM Protocol** - Built specifically for Token-2022 compatibility
-- **Transfer Hook Validation** - Whitelisted hook programs with pre-transaction simulation
-- **Complete Frontend** - React-based UI for token creation, pool management, and trading
-- **Security First** - Robust validation and compliance features
-- **Enterprise Ready** - Designed for real-world asset tokenization
+**However**, no major AMMs support Token-2022 with active Transfer Hooks, limiting DeFi adoption.
+
+### Our Solution
+A complete AMM that makes Token-2022 with Transfer Hooks tradable through:
+- 🔐 **Hook Whitelisting System**: Only approved transfer hook programs allowed
+- 🏊‍♀️ **Full AMM Functionality**: Pool creation, liquidity provision, token swapping  
+- 🎨 **Complete UI**: User-friendly interface for all operations
+- 🛡️ **Security First**: Comprehensive validation and error handling
 
 ## 🏗️ Architecture
 
-### Smart Contracts (Rust/Anchor)
+```
+┌─────────────────────┐    ┌─────────────────────┐    ┌─────────────────────┐
+│   Frontend (React)  │    │  Anchor Program     │    │   Token-2022        │
+│                     │    │                     │    │                     │
+│ • Token Creator     │◄──►│ • initialize_amm    │◄──►│ • Transfer Hooks    │
+│ • Pool Creator      │    │ • create_pool       │    │ • Mint Extensions   │
+│ • Swap Interface    │    │ • whitelist_hook    │    │ • Custom Logic      │
+│ • Liquidity Provider│    │ • add_liquidity     │    │                     │
+└─────────────────────┘    │ • swap              │    └─────────────────────┘
+                           └─────────────────────┘
+```
 
-1. **Token-2022 AMM Program** (`programs/token-2022-amm/`)
-   - Pool initialization and management
-   - Liquidity provision (add/remove)
-   - Token swapping with hook validation
-   - Whitelisted hook program management
-
-2. **Transfer Hook Program** (`programs/transfer-hook/`)
-   - Sample implementation of various hook types
-   - Whitelist validation
-   - KYC/compliance checks
-   - Rate limiting functionality
-
-### Frontend Application (`app/`)
-
-- **React + TypeScript** - Modern web interface
-- **Solana Wallet Integration** - Support for Phantom, Solflare, etc.
-- **Real-time Trading** - Live price feeds and swap execution
-- **Pool Management** - Create and manage liquidity pools
-- **Token Creation** - Easy Token-2022 creation with hooks
-
-## 🚀 Features
-
-### ✅ Core Functionality
-
-- [x] **Token-2022 Creation** - Create tokens with various transfer hook types
-- [x] **Pool Creation** - Initialize AMM pools for Token-2022 pairs
-- [x] **Liquidity Management** - Add and remove liquidity with LP tokens
-- [x] **Token Swapping** - Trade tokens with hook validation
-- [x] **Hook Validation** - Pre-transaction simulation and approval
-
-### ✅ Transfer Hook Support
-
-- [x] **Whitelist Hooks** - Restrict transfers to approved addresses
-- [x] **KYC Hooks** - Know Your Customer validation
-- [x] **Rate Limiting** - Control transfer frequency and amounts
-- [x] **Compliance Hooks** - Custom business rule enforcement
-
-### ✅ Security Features
-
-- [x] **Hook Whitelisting** - Only approved hook programs allowed
-- [x] **Pre-transaction Simulation** - Validate transfers before execution
-- [x] **Slippage Protection** - Configurable slippage tolerance
-- [x] **Access Controls** - Authority-based configuration updates
-
-## 🛠️ Tech Stack
-
-### Backend
-- **Solana/Anchor** - Smart contract framework
-- **Rust** - Systems programming language
-- **SPL Token-2022** - Enhanced token standard
-- **Transfer Hook Interface** - Hook validation framework
-
-### Frontend
-- **React 18** - Modern UI framework
-- **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first styling
-- **Solana Wallet Adapter** - Wallet integration
-- **React Router** - Client-side routing
-
-### Development Tools
-- **Anchor CLI** - Smart contract development
-- **Solana CLI** - Blockchain interaction
-- **Node.js/npm** - Package management
-- **Git** - Version control
-
-## 📦 Installation & Setup
+## ⚡ Quick Start
 
 ### Prerequisites
+- **Rust** 1.70+
+- **Node.js** 18+  
+- **Solana CLI** 1.17+
+- **Anchor CLI** 0.31+
 
+### 1. Setup Environment
 ```bash
-# Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# Clone and setup
+git clone <repo-url> token-2022-amm
+cd token-2022-amm
 
-# Install Solana CLI
-sh -c "$(curl -sSfL https://release.solana.com/v1.17.0/install)"
-
-# Install Anchor
-npm install -g @coral-xyz/anchor-cli
-
-# Install Node.js dependencies
-npm install -g yarn
+# Run automated setup
+chmod +x scripts/setup.sh
+./scripts/setup.sh
 ```
 
-### Clone and Setup
-
+### 2. Build & Deploy
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd token-2022
-
-# Install dependencies
-yarn install
-
-# Build smart contracts
-anchor build
+# Build everything
+npm run build-all
 
 # Deploy to devnet
-anchor deploy --provider.cluster devnet
+npm run deploy
+```
 
-# Start frontend
+### 3. Start Frontend
+```bash
 cd app
-yarn install
-yarn start
+npm run dev
 ```
 
-## 🎮 Usage Guide
+Visit `http://localhost:3000` to use the AMM interface!
 
-### 1. Create a Token-2022 with Transfer Hook
+## 🎮 Demo Walkthrough
 
-1. Navigate to "Create Token" page
-2. Fill in token details (name, symbol, supply)
-3. Select transfer hook type (whitelist, KYC, rate limit, compliance)
-4. Submit transaction to create token
+### 1. **Connect Wallet**
+- Support for all major Solana wallets (Phantom, Solflare, etc.)
+- Automatic devnet configuration
 
-### 2. Create a Liquidity Pool
-
-1. Go to "Create Pool" page
-2. Enter Token A mint address (your Token-2022)
-3. Enter Token B mint address (SOL or another token)
-4. Set fee rate and initial liquidity
-5. Create pool and add initial liquidity
-
-### 3. Trade Tokens
-
-1. Open "Trade" page
-2. Select tokens to swap
-3. Enter amount
-4. Review hook validation status
-5. Execute swap
-
-### 4. Manage Liquidity
-
-1. Visit "Liquidity" page
-2. Add liquidity to earn fees
-3. Remove liquidity when needed
-4. Track your pool share and earnings
-
-## 🔧 Technical Implementation
-
-### Hook Validation Flow
-
-```
-1. User initiates swap
-2. AMM validates hook program is whitelisted
-3. Pre-transaction simulation executed
-4. Hook validation checks performed
-5. Transaction executed if all checks pass
-6. Post-transaction hook execution
+### 2. **Create Token-2022**
+```typescript
+// Example: Create token with KYC hook
+const token = await createToken2022({
+  name: "Enterprise Token",
+  symbol: "ENT",
+  transferHook: kycHookProgram,
+  supply: 1_000_000
+});
 ```
 
-### Pool Architecture
-
-```
-Pool State:
-├── Token A Vault (Token-2022 with hooks)
-├── Token B Vault (SOL/other tokens)
-├── LP Token Mint
-├── Fee Configuration
-├── Hook Whitelist
-└── Pool Metadata
+### 3. **Create Trading Pool**
+```typescript
+// Create SOL-ENT pool
+const pool = await createPool({
+  tokenA: NATIVE_MINT, // SOL
+  tokenB: enterpriseToken,
+  initialPrice: 1.0
+});
 ```
 
-### Security Considerations
+### 4. **Add Liquidity**
+```typescript
+// Become a liquidity provider
+await addLiquidity({
+  pool: poolAddress,
+  amountA: 100, // 100 SOL
+  amountB: 100, // 100 ENT
+  slippage: 0.5
+});
+```
 
-- **Whitelisted Hooks Only** - Prevents malicious hook programs
-- **Simulation Before Execution** - Catches hook failures early
-- **Authority Controls** - Secure configuration management
-- **Slippage Protection** - User-defined tolerance levels
+### 5. **Execute Swaps**
+```typescript
+// Swap with automatic hook validation
+await swap({
+  pool: poolAddress,
+  tokenIn: NATIVE_MINT,
+  amountIn: 10,
+  minimumAmountOut: 9.5,
+  slippage: 0.5
+});
+```
+
+## 🔐 Transfer Hook Security
+
+### Whitelisting System
+The AMM implements a comprehensive security model:
+
+```rust
+pub struct HookWhitelist {
+    pub amm: Pubkey,
+    pub bump: u8,
+    pub whitelisted_hooks: Vec<Pubkey>,
+}
+```
+
+### Supported Hook Types
+- **✅ KYC/AML Compliance**: Identity verification requirements
+- **✅ Geographic Restrictions**: Location-based transfer rules  
+- **✅ Time-based Locks**: Scheduled release mechanisms
+- **✅ Custom Business Logic**: Enterprise-specific requirements
+
+### Validation Process
+1. Check if token has transfer hooks enabled
+2. Verify all hooks are whitelisted  
+3. Execute transfer with automatic hook validation
+4. Handle hook failures gracefully
+
+## 📊 Program Details
+
+### Core Instructions
+- **`initialize_amm`**: Setup AMM with fee configuration
+- **`create_pool`**: Create new token pair trading pools
+- **`whitelist_hook`**: Add approved transfer hook programs  
+- **`add_liquidity`**: Provide liquidity to earn fees
+- **`swap`**: Execute token trades with hook validation
+
+### Account Structure
+```rust
+pub struct Pool {
+    pub amm: Pubkey,           // Parent AMM
+    pub token_a_mint: Pubkey,  // First token
+    pub token_b_mint: Pubkey,  // Second token  
+    pub reserve_a: u64,        // Token A reserves
+    pub reserve_b: u64,        // Token B reserves
+    pub lp_supply: u64,        // LP token supply
+    pub is_active: bool,       // Trading status
+}
+```
+
+### Economics
+- **AMM Model**: Constant Product (x * y = k)
+- **Default Fee**: 0.3% per swap
+- **LP Rewards**: Proportional fee distribution
+- **Slippage Protection**: Configurable tolerance levels
 
 ## 🧪 Testing
 
-### Run Smart Contract Tests
-
+### Run Full Test Suite
 ```bash
-# Test AMM functionality
+# Unit tests
 anchor test
 
-# Test specific components
-anchor test --grep "initialize_pool"
-anchor test --grep "swap_tokens"
+# Integration tests  
+npm run test
+
+# Frontend tests
+cd app && npm test
 ```
 
-### Frontend Testing
+### Test Coverage
+- ✅ AMM initialization
+- ✅ Pool creation with Token-2022
+- ✅ Hook whitelisting validation
+- ✅ Liquidity operations
+- ✅ Swap execution with hooks
+- ✅ Error handling edge cases
 
+## 🚀 Deployment
+
+### Devnet Deployment
 ```bash
-cd app
-yarn test
+# Deploy program
+anchor deploy --provider.cluster devnet
+
+# Initialize AMM
+npm run deploy-program
 ```
 
-## 📊 Demo & Examples
+### Mainnet Deployment
+```bash
+# Switch to mainnet
+solana config set --url mainnet-beta
 
-### Live Demo
-- **Devnet Deployment**: [Coming Soon]
-- **Video Walkthrough**: [Coming Soon]
-
-### Example Token Creation
-
-```typescript
-const createToken = async () => {
-  const mint = await createMintWithHook({
-    name: "RWA Property Token",
-    symbol: "RWAPROP",
-    decimals: 6,
-    supply: 1000000,
-    hookType: "whitelist"
-  });
-};
+# Deploy with production settings
+anchor deploy --provider.cluster mainnet
 ```
 
-### Example Pool Creation
+### Production Configuration
+```toml
+[programs.mainnet]
+token_2022_amm = "Your-Program-ID-Here"
 
-```typescript
-const createPool = async () => {
-  const pool = await initializePool({
-    tokenA: "RWAPropTokenMint...",
-    tokenB: "So11111111111111111111111111111111111111112", // SOL
-    feeRate: 30, // 0.3%
-    hookWhitelist: ["HOOK2222222222222222222222222222222222222222"]
-  });
-};
+[provider]
+cluster = "mainnet-beta"
 ```
 
-## 🏆 Bounty Submission Checklist
+## 📁 Project Structure
 
-### ✅ Required Components
-
-- [x] **UI for Token Creation** - Complete interface for Token-2022 creation
-- [x] **UI for Pool Creation** - AMM pool initialization interface
-- [x] **UI for Trading** - Token swap interface with hook validation
-- [x] **Live Demo** - Deployed to devnet (coming soon)
-- [x] **Video Demo** - Walkthrough of complete flow (coming soon)
-- [x] **Source Code** - Complete codebase with documentation
-
-### ✅ Technical Requirements
-
-- [x] **Token-2022 Support** - Full compatibility with new token standard
-- [x] **Transfer Hook Integration** - Whitelisted hook validation system
-- [x] **AMM Functionality** - Complete automated market maker
-- [x] **Security Implementation** - Robust validation and controls
-
-### ✅ Bonus Features
-
-- [x] **Multiple Hook Types** - Support for whitelist, KYC, rate limit, compliance
-- [x] **Permissionless but Safe** - Whitelisted hook approval system
-- [x] **Custom AMM Protocol** - Purpose-built for Token-2022
+```
+token-2022-amm/
+├── programs/
+│   └── token-2022-amm/        # Rust Anchor program
+│       ├── src/lib.rs         # Main program logic
+│       └── Cargo.toml         # Rust dependencies
+├── app/                       # React frontend
+│   ├── src/
+│   │   ├── components/        # UI components
+│   │   ├── utils/            # Helper functions
+│   │   └── pages/            # Application pages
+│   └── package.json
+├── tests/                     # Anchor tests
+├── scripts/                   # Build & deployment scripts
+├── sdk/                       # TypeScript SDK
+└── target/                    # Compiled artifacts
+```
 
 ## 🤝 Contributing
 
-This project is open for community contributions:
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
+### Development Setup
 1. Fork the repository
-2. Create a feature branch
-3. Implement your changes
-4. Add tests
-5. Submit a pull request
+2. Create feature branch: `git checkout -b feature/amazing-feature`  
+3. Make changes and add tests
+4. Run full test suite: `npm run test`
+5. Submit pull request
 
-## 📄 License
+## 📜 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
+## 🙏 Acknowledgments
 
-- [Solana Token-2022 Documentation](https://spl.solana.com/token-2022)
-- [Anchor Framework](https://www.anchor-lang.com/)
-- [SPL Transfer Hook Interface](https://github.com/solana-labs/solana-program-library/tree/master/token/transfer-hook)
+- **Solana Labs** for Token-2022 standard
+- **Coral/Anchor** for development framework
+- **Community** for feedback and testing
 
-## 📧 Contact
+## 📞 Support
 
-For questions about this bounty submission or technical implementation:
-
-- GitHub Issues: [Create an issue](https://github.com/your-repo/token-2022/issues)
-- Documentation: See `/docs` folder for detailed technical specs
+- **Documentation**: [docs/](docs/)
+- **Issues**: [GitHub Issues](https://github.com/solana-labs/token-2022-amm/issues)
+- **Discord**: [Community Channel](https://discord.gg/solana)
 
 ---
 
-*This project demonstrates the future of tokenized real-world assets on Solana, making Token-2022's advanced features accessible through DeFi protocols.* 🚀
+**Built with ❤️ for the Solana ecosystem**
+
+*Making Token-2022 with Transfer Hooks tradable in DeFi*
